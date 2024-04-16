@@ -63,7 +63,7 @@ namespace RecipeApp.Class
                 Console.WriteLine($"{i + 1}. {steps[i]}");
             }
         }
-        public void PrintRecipe() // this method is used as the same as before but turned into its own method for easy use in the program for printing out the recipe
+        public void PrintRecipe() // this method is used as the same as before but turned into its own method for easy use in the program for printing out the recip
         {
             Console.WriteLine("\nRecipe:");
             Console.WriteLine("Ingredients:");
