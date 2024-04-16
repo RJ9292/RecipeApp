@@ -26,7 +26,7 @@ namespace RecipeApp.Class
                 switch (choice)
                 {
                     case "1":
-                        // Handles the entire input of the recipe from the user
+                        // Handles the entire input of the recipe from the User1
 
                         res.EnterRecipe();
                         break;
