@@ -50,7 +50,7 @@ namespace RecipeApp.Class
 
             Console.WriteLine("All steps entered.");
 
-            Console.WriteLine("\nRecipe:"); // this will handle the format of the printing out the recip 
+            Console.WriteLine("\nRecipe:"); // this will handle the format of the printing out the recipe
             Console.WriteLine("Ingredients:");
             foreach (var ingredient in Ingredients)
             {
