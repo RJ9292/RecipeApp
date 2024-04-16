@@ -78,7 +78,7 @@ namespace RecipeApp.Class
             Console.WriteLine("Recipe Deleted");
         }
         
-        public void ResetValues() // This will run through the program iterating over the initial aray comparing it to the the quantity. if null there will be no changed if there are changes it will be reversed to its original state.
+        public void ResetValues() // This will run through the program iterating over the initial array comparing it to the the quantity. if null there will be no changed if there are changes it will be reversed to its original state.
         {
             foreach(var orignalIngredient in orignalIngredients)
             {
