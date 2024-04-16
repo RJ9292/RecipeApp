@@ -21,7 +21,7 @@ namespace RecipeApp.Class
 
             for (int i = 1; i <= InNum; i++) // this counter will allow the system to loop through the amount the user requests
             {
-                Console.WriteLine($"Enter Ingredient {i}:"); // i in this case will take the users input and will be placed in the question for clarity
+                Console.WriteLine($"Enter Ingredient {i}:"); // i i this case will take the users input and will be placed in the question for clarity
                 string ingredientName = Console.ReadLine();
 
                 Console.WriteLine($"Enter Quantity for {ingredientName}:");
