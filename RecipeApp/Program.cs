@@ -76,7 +76,7 @@ namespace RecipeApp.Class
 }
 
 #region Reference List
-/* Troelsen A. and Japikse, P. 2024. Pro C# 9 with .NET 5.
+/* Troelsen A. and Japikse, P. 2024. Pro C# 9 with .NET 5
  *          New York: Apress. */
 
 #endregion
