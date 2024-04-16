@@ -15,7 +15,7 @@ namespace RecipeApp.Class
         }
 
         public void EnterRecipe()
-        { // this will run through prompts asking the user for their recipe 
+        { // this will run through prompts asking the user for their recipe
             Console.WriteLine("How many Ingredients do you want to enter?");
             int InNum = int.Parse(Console.ReadLine());
 
