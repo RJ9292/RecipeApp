@@ -6,6 +6,9 @@ namespace RecipeApp.Class
     {
         public static void Main(string[] args)
         {
+            ConsoleColor originalColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.White;
+
             Recipe res = new Recipe();
             bool exit = false;
             while (!exit)
@@ -46,7 +49,10 @@ namespace RecipeApp.Class
 
                     case "4":
                         // handles printing the recipe to check if the change in measurements were correct
+                        
+                        Console.ForegroundColor = ConsoleColor.Green; // Set text color to green
                         res.PrintRecipe();
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                         
 
@@ -69,6 +75,7 @@ namespace RecipeApp.Class
                 Console.WriteLine("Press Enter to exit...");
                 Console.ReadLine();
             }
+            Console.ForegroundColor = originalColor;
 
         }
 

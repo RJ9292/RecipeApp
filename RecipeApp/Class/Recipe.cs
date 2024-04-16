@@ -65,6 +65,7 @@ namespace RecipeApp.Class
         }
         public void PrintRecipe() // this method is used as the same as before but turned into its own method for easy use in the program for printing out the recipe
         {
+            
             Console.WriteLine("\nRecipe:");
             Console.WriteLine("Ingredients:");
             foreach (var ingredient in Ingredients)
