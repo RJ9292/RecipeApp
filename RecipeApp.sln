@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeApp", "RecipeApp\Reci
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50625424-D7FC-4D46-B9E3-838D9102EB26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeTest", "RecipeTest\RecipeTest.csproj", "{26149104-5DE2-423F-AAB0-E0B43D62BDAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{025601CB-2B07-43E4-AB83-A6C3048E4E9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{025601CB-2B07-43E4-AB83-A6C3048E4E9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{025601CB-2B07-43E4-AB83-A6C3048E4E9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26149104-5DE2-423F-AAB0-E0B43D62BDAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26149104-5DE2-423F-AAB0-E0B43D62BDAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26149104-5DE2-423F-AAB0-E0B43D62BDAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26149104-5DE2-423F-AAB0-E0B43D62BDAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
