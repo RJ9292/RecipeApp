@@ -19,7 +19,7 @@ namespace RecipeApp.Class
             while (!exit)
             {
                 Console.Clear();
-                Console.WriteLine("Choose an Option to the Corresponding Number:")
+                Console.WriteLine("Choose an Option to the Corresponding Number:");
                 Console.WriteLine("");
                 Console.WriteLine("1) Enter A Recipe");
                 Console.WriteLine("2) Prefill Pancake Recipe");
@@ -104,6 +104,16 @@ namespace RecipeApp.Class
             Console.WriteLine("- Spice");
             Console.WriteLine("- Fat");
             Console.WriteLine("- Liquid");
+            Console.WriteLine();
+            Console.WriteLine("Accepted Measurements:");
+            Console.WriteLine("- teaspoon");
+            Console.WriteLine("- tablespoon");
+            Console.WriteLine("- cup");
+            Console.WriteLine("- ml (millilitres)");
+            Console.WriteLine("- l (litres)");
+            Console.WriteLine("- mg (milligrams)");
+            Console.WriteLine("- g (grams)");
+            Console.WriteLine("- kg (kilograms)");
             Console.WriteLine();
             Console.WriteLine("Press Enter to continue...");
             Console.ReadLine();
@@ -228,3 +238,20 @@ namespace RecipeApp.Class
         }
     }
 }
+/*
+ankita_saini, 2019. GeeksForGeeks. [Online]
+Available at: https://www.geeksforgeeks.org/console-class-in-c-sharp/
+[Accessed 30 05 2024].
+ankita_saini, 2023.GeeksForGeeks. [Online]
+Available at: https://www.geeksforgeeks.org/c-sharp-dictionary-with-examples/
+[Accessed 30 05 2024].
+Kirti_Mangal, 2022.GeeksForgeeks. [Online]
+Available at: https://www.geeksforgeeks.org/c-sharp-list-class/
+[Accessed 30 05 2024].
+ManasiKirloskar, 2021.GeeksForGeeks. [Online]
+Available at: ManasiKirloskar
+[Accessed 30 05 2024].
+soumikmondal, 2021.GeeksForGeeks. [Online]
+Available at: https://www.geeksforgeeks.org/c-sharp-delegates/
+[Accessed 30 05 2024].
+*/

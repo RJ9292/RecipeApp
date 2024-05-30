@@ -3,26 +3,30 @@ using System.Collections.Generic;
 
 namespace RecipeApp.Class
 {
+    // Delegate for calorie warning messages
     public delegate void CalorieWarningDelegate(int totalCalories);
 
+    // Class representing a recipe
     public class Recipe
     {
-        public string RecipeName { get; private set; }
-        public List<Ingredient> OriginalIngredients { get; private set; }
-        public List<Ingredient> Ingredients { get; private set; }
-        public List<string> Steps { get; private set; }
-        private CalorieWarningDelegate CalorieWarning;
+        // Properties of the Recipe class
+        public string RecipeName { get; private set; } // Name of the recipe
+        public List<Ingredient> OriginalIngredients { get; private set; } // List of original ingredients
+        public List<Ingredient> Ingredients { get; private set; } // List of ingredients
+        public List<string> Steps { get; private set; } // List of steps to prepare the recipe
+        private CalorieWarningDelegate CalorieWarning; // Delegate for calorie warnings
 
+        // Constructor to initialize the properties of the Recipe class
         public Recipe(string name)
         {
-            RecipeName = name;
-            Ingredients = new List<Ingredient>();
-            OriginalIngredients = new List<Ingredient>();
-            Steps = new List<string>();
-            CalorieWarning = DefaultWarning;
+            RecipeName = name; // Initialize the recipe name
+            Ingredients = new List<Ingredient>(); // Initialize the list of ingredients
+            OriginalIngredients = new List<Ingredient>(); // Initialize the list of original ingredients
+            Steps = new List<string>(); // Initialize the list of steps
+            CalorieWarning = DefaultWarning; // Set the default calorie warning
         }
 
-        // Enter a new recipe
+        // Method to enter a new recipe
         public bool EnterRecipe()
         {
             try
@@ -104,6 +108,7 @@ namespace RecipeApp.Class
                         return false;
                     }
 
+                    // Create a new ingredient and add it to the lists
                     Ingredient ingredient = new Ingredient(ingredientName, quantity, measurement, foodGroup, calories);
                     Ingredients.Add(ingredient);
                     OriginalIngredients.Add(new Ingredient(ingredientName, quantity, measurement, foodGroup, calories));
@@ -138,7 +143,7 @@ namespace RecipeApp.Class
             }
         }
 
-        // Print the recipe
+        // Method to print the recipe
         public void PrintRecipe()
         {
             try
@@ -170,7 +175,7 @@ namespace RecipeApp.Class
             }
         }
 
-        // Calculate total calories
+        // Method to calculate total calories
         public int CalculateTotalCalories()
         {
             int totalCalories = 0;
@@ -181,7 +186,7 @@ namespace RecipeApp.Class
             return totalCalories;
         }
 
-        // Set the calorie warning delegate
+        // Method to set the calorie warning delegate based on total calories
         private void SetCalorieWarningDelegate(int totalCalories)
         {
             if (totalCalories > 2000)
@@ -206,25 +211,28 @@ namespace RecipeApp.Class
             }
         }
 
-        // Calorie warnings
+        // Calorie warning for over 2000 calories
         private void Over2000CaloriesWarning(int totalCalories)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Warning: Are you trying to set a new record for the highest calorie dish ever? This monstrosity is over 2000 calories! Why not just eat a brick of butter?");
         }
 
+        // Calorie warning for over 1200 calories
         private void Over1200CaloriesWarning(int totalCalories)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Warning: Over 1200 calories! Are you sure this is a recipe and not a nutritional disaster? Maybe rethink your life choices.");
         }
 
+        // Calorie warning for over 600 calories
         private void Over600CaloriesWarning(int totalCalories)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Warning: This recipe is over 600 calories! Do you have a death wish, or are you just planning on sharing this with a small village?");
         }
 
+        // Calorie warning for over 300 calories
         private void Over300CaloriesWarning(int totalCalories)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -232,13 +240,14 @@ namespace RecipeApp.Class
             Console.WriteLine("Excessive calorie intake can lead to weight gain, increased risk of chronic diseases like diabetes and heart disease. Please be mindful of your health.");
         }
 
+        // Default warning for recipes with fewer calories
         private void DefaultWarning(int totalCalories)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Your recipe looks good!");
         }
 
-        // Delete the recipe
+        // Method to delete the recipe
         public void DeleteRecipe()
         {
             try
@@ -254,7 +263,7 @@ namespace RecipeApp.Class
             }
         }
 
-        // Reset the values to the original state
+        // Method to reset the values to the original state
         public void ResetValues()
         {
             try
@@ -271,7 +280,7 @@ namespace RecipeApp.Class
             }
         }
 
-        // Edit the recipe
+        // Method to edit the recipe
         public void EditRecipe()
         {
             try
