@@ -19,7 +19,7 @@ namespace RecipeApp.Class
             while (!exit)
             {
                 Console.Clear();
-                Console.WriteLine("Choose an Option to the Corresponding Number:")
+                Console.WriteLine("Choose an Option to the Corresponding Number:");
                 Console.WriteLine("");
                 Console.WriteLine("1) Enter A Recipe");
                 Console.WriteLine("2) Prefill Pancake Recipe");
