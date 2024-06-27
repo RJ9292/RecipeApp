@@ -1,0 +1,41 @@
+﻿<Window x:Class="RecipeApplication.ManageRecipeApplication.AddIngredientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Ingredient" Height="524" Width="400">
+    <Grid>
+        <StackPanel Margin="0,0,0,-118">
+            <TextBlock Text="Ingredient Name:" Margin="10"/>
+            <TextBox x:Name="txtIngredientName" Width="200" Height="30" Margin="10" VerticalAlignment="Top"/>
+
+            <TextBlock Text="Quantity:" Margin="10"/>
+            <TextBox x:Name="txtQuantity" Width="200" Height="30" Margin="10" VerticalAlignment="Top"/>
+
+            <TextBlock Text="Measurement Unit:" Margin="10"/>
+            <ComboBox x:Name="cbMeasurementUnit" Width="200" Height="30" Margin="10">
+                <ComboBoxItem Content="ml"/>
+                <ComboBoxItem Content="L"/>
+                <ComboBoxItem Content="mg"/>
+                <ComboBoxItem Content="g"/>
+                <ComboBoxItem Content="kg"/>
+                <ComboBoxItem Content="whole"/>
+            </ComboBox>
+
+            <TextBlock Text="Food Group:" Margin="10"/>
+            <ComboBox x:Name="cbFoodGroup" Width="200" Height="30" Margin="10">
+                <ComboBoxItem Content="Grains"/>
+                <ComboBoxItem Content="Dairy"/>
+                <ComboBoxItem Content="Protein"/>
+                <ComboBoxItem Content="Sweetener"/>
+                <ComboBoxItem Content="Leavening Agent"/>
+                <ComboBoxItem Content="Spice"/>
+                <ComboBoxItem Content="Fat"/>
+                <ComboBoxItem Content="Liquid"/>
+            </ComboBox>
+
+            <TextBlock Text="Calories:" Margin="10"/>
+            <TextBox x:Name="txtCalories" Width="200" Height="30" Margin="10" VerticalAlignment="Top"/>
+
+            <Button Content="Add" Width="100" Height="30" Margin="10" VerticalAlignment="Top" Click="BtnAdd_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
