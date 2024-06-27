@@ -15,11 +15,12 @@ namespace RecipeApp.Class
                 foreach (var ingredient in ingredients)
                 {
                     // Try to parse the ingredient quantity as a double
-                    if (double.TryParse(ingredient.IngredientQuantity, out double quantity))
+                    if (double.TryParse(ingredient.Quantity, out double quantity))
                     {
                         // Apply the multiplier to the quantity and update the ingredient
-                        ingredient.IngredientQuantity = (quantity * multiplier).ToString();
+                        ingredient.Quantity = (quantity * multiplier).ToString();
                     }
+
                     // Apply the multiplier to the calories and update the ingredient
                     ingredient.Calories = (int)(ingredient.Calories * multiplier);
                 }
@@ -29,10 +30,8 @@ namespace RecipeApp.Class
                 // Handle any exceptions that occur during the multiplication process
                 Console.WriteLine($"An error occurred while applying the multiplier: {ex.Message}");
             }
-        }
+        } // End of method
 
-        // End of Multiplier class
-    }
+    } // End of Multiplier class
 
-    // End of RecipeApp.Class namespace
-}
+} // End of RecipeApp.Class namespace

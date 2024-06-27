@@ -1,69 +1,93 @@
-﻿using System.Collections.Generic;
+﻿using RecipeApp.Class;
 using System.Windows;
-using System.Windows.Controls;
-using RecipeApp.Class;
 
 namespace RecipeApplication.ManageRecipeApplication
 {
     public partial class EnterRecipeWindow : Window
     {
+        // Property to store the new recipe added by the user
         public Recipe NewRecipe { get; private set; }
-        private List<Ingredient> ingredients;
 
+        // Private field to store the current recipe being created
+        private Recipe currentRecipe;
+
+        // Constructor to initialize the EnterRecipeWindow
         public EnterRecipeWindow()
         {
             InitializeComponent();
-            ingredients = new List<Ingredient>();
-        }
+            currentRecipe = new Recipe(string.Empty); // Initialize with a placeholder name
+        } // End of method
 
+        // Event handler for the "Add Ingredient" button click
         private void BtnAddIngredient_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtIngredientName.Text) &&
-                !string.IsNullOrEmpty(txtQuantity.Text) &&
-                cbMeasurementUnit.SelectedItem != null &&
-                cbFoodGroup.SelectedItem != null &&
-                int.TryParse(txtCalories.Text, out int calories))
+            var addIngredientWindow = new AddIngredientWindow(currentRecipe);
+            if (addIngredientWindow.ShowDialog() == true)
             {
-                var ingredient = new Ingredient(
-                    txtIngredientName.Text,
-                    txtQuantity.Text,
-                    ((ComboBoxItem)cbMeasurementUnit.SelectedItem).Content.ToString(),
-                    ((ComboBoxItem)cbFoodGroup.SelectedItem).Content.ToString(),
-                    calories);
+                lstIngredients.Items.Add(addIngredientWindow.NewIngredient);
+            }
+        } // End of method
 
-                ingredients.Add(ingredient);
-                ClearIngredientInputs();
+        // Event handler for the "Delete Ingredient" button click
+        private void BtnDeleteIngredient_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstIngredients.SelectedItem != null)
+            {
+                var selectedIngredient = (Ingredient)lstIngredients.SelectedItem;
+                currentRecipe.Ingredients.Remove(selectedIngredient);
+                lstIngredients.Items.Remove(selectedIngredient);
             }
             else
             {
-                MessageBox.Show("Please enter all ingredient details.");
+                MessageBox.Show("Please select an ingredient to delete.");
             }
-        }
+        } // End of method
 
+        // Event handler for the "Add Step" button click
+        private void BtnAddStep_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtStep.Text))
+            {
+                lstSteps.Items.Add(txtStep.Text);
+                txtStep.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Please enter a step.");
+            }
+        } // End of method
+
+        // Event handler for the "Delete Step" button click
+        private void BtnDeleteStep_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstSteps.SelectedItem != null)
+            {
+                lstSteps.Items.Remove(lstSteps.SelectedItem);
+            }
+            else
+            {
+                MessageBox.Show("Please select a step to delete.");
+            }
+        } // End of method
+
+        // Event handler for the "Save Recipe" button click
         private void BtnSaveRecipe_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtRecipeName.Text))
             {
-                NewRecipe = new Recipe(txtRecipeName.Text);
-                foreach (var ingredient in ingredients)
+                currentRecipe.RecipeName = txtRecipeName.Text;
+                NewRecipe = currentRecipe;
+                foreach (string step in lstSteps.Items)
                 {
-                    NewRecipe.Ingredients.Add(ingredient);
+                    NewRecipe.Steps.Add(step);
                 }
+                this.DialogResult = true;
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Please enter a recipe name.");
             }
-        }
-
-        private void ClearIngredientInputs()
-        {
-            txtIngredientName.Clear();
-            txtQuantity.Clear();
-            cbMeasurementUnit.SelectedItem = null;
-            txtCalories.Clear();
-            cbFoodGroup.SelectedItem = null;
-        }
-    }
-}
+        } // End of method
+    } // End of EnterRecipeWindow class
+} // End of RecipeApplication.ManageRecipeApplication namespace

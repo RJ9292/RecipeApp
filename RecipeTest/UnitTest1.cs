@@ -71,13 +71,13 @@ namespace RecipeApp.Tests
             var recipe = new Recipe("Test Recipe");
             recipe.Ingredients.Add(new Ingredient("Flour", "1", "cup", "Grain", 100));
             recipe.OriginalIngredients.Add(new Ingredient("Flour", "1", "cup", "Grain", 100));
-            recipe.Ingredients[0].IngredientQuantity = "2";
+            recipe.Ingredients[0].Quantity = "2";
 
             // Act
             recipe.ResetValues();
 
             // Assert
-            Assert.AreEqual("1", recipe.Ingredients[0].IngredientQuantity);
+            Assert.AreEqual("1", recipe.Ingredients[0].Quantity);
         }
 
         [TestMethod]
@@ -95,7 +95,7 @@ namespace RecipeApp.Tests
             Assert.IsTrue(result);
             Assert.AreEqual(1, recipe.Ingredients.Count);
             Assert.AreEqual(1, recipe.Steps.Count);
-            Assert.AreEqual("Flour", recipe.Ingredients[0].IngredientName);
+            Assert.AreEqual("Flour", recipe.Ingredients[0].Name);
         }
     }
 }

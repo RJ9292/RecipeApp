@@ -2,40 +2,78 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Add Ingredient" Height="524" Width="400">
+    <!-- Main grid layout -->
     <Grid>
-        <StackPanel Margin="0,0,0,-118">
+        <!-- StackPanel to arrange elements vertically -->
+        <StackPanel>
+            <!-- Ingredient Name input -->
             <TextBlock Text="Ingredient Name:" Margin="10"/>
+            <!-- Label for ingredient name -->
             <TextBox x:Name="txtIngredientName" Width="200" Height="30" Margin="10" VerticalAlignment="Top"/>
+            <!-- TextBox for ingredient name -->
 
+            <!-- Quantity input -->
             <TextBlock Text="Quantity:" Margin="10"/>
+            <!-- Label for quantity -->
             <TextBox x:Name="txtQuantity" Width="200" Height="30" Margin="10" VerticalAlignment="Top"/>
+            <!-- TextBox for quantity -->
 
+            <!-- Measurement Unit input -->
             <TextBlock Text="Measurement Unit:" Margin="10"/>
+            <!-- Label for measurement unit -->
             <ComboBox x:Name="cbMeasurementUnit" Width="200" Height="30" Margin="10">
+                <!-- ComboBox for measurement unit -->
                 <ComboBoxItem Content="ml"/>
+                <!-- ComboBox item for milliliters -->
                 <ComboBoxItem Content="L"/>
+                <!-- ComboBox item for liters -->
                 <ComboBoxItem Content="mg"/>
+                <!-- ComboBox item for milligrams -->
                 <ComboBoxItem Content="g"/>
+                <!-- ComboBox item for grams -->
                 <ComboBoxItem Content="kg"/>
+                <!-- ComboBox item for kilograms -->
                 <ComboBoxItem Content="whole"/>
+                <!-- ComboBox item for whole units -->
             </ComboBox>
+            <!-- End of ComboBox for measurement unit -->
 
+            <!-- Food Group input -->
             <TextBlock Text="Food Group:" Margin="10"/>
+            <!-- Label for food group -->
             <ComboBox x:Name="cbFoodGroup" Width="200" Height="30" Margin="10">
+                <!-- ComboBox for food group -->
                 <ComboBoxItem Content="Grains"/>
+                <!-- ComboBox item for grains -->
                 <ComboBoxItem Content="Dairy"/>
+                <!-- ComboBox item for dairy -->
                 <ComboBoxItem Content="Protein"/>
+                <!-- ComboBox item for protein -->
                 <ComboBoxItem Content="Sweetener"/>
+                <!-- ComboBox item for sweetener -->
                 <ComboBoxItem Content="Leavening Agent"/>
+                <!-- ComboBox item for leavening agent -->
                 <ComboBoxItem Content="Spice"/>
+                <!-- ComboBox item for spice -->
                 <ComboBoxItem Content="Fat"/>
+                <!-- ComboBox item for fat -->
                 <ComboBoxItem Content="Liquid"/>
+                <!-- ComboBox item for liquid -->
             </ComboBox>
+            <!-- End of ComboBox for food group -->
 
+            <!-- Calories input -->
             <TextBlock Text="Calories:" Margin="10"/>
+            <!-- Label for calories -->
             <TextBox x:Name="txtCalories" Width="200" Height="30" Margin="10" VerticalAlignment="Top"/>
+            <!-- TextBox for calories -->
 
+            <!-- Add button -->
             <Button Content="Add" Width="100" Height="30" Margin="10" VerticalAlignment="Top" Click="BtnAdd_Click"/>
+            <!-- Button to add ingredient -->
         </StackPanel>
+        <!-- End of StackPanel -->
     </Grid>
+    <!-- End of Grid -->
 </Window>
+<!-- End of Window -->

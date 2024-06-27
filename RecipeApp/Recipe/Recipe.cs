@@ -10,11 +10,11 @@ namespace RecipeApp.Class
     public class Recipe
     {
         // Properties of the Recipe class
-        public string RecipeName { get; private set; } // Name of the recipe
-        public List<Ingredient> OriginalIngredients { get; private set; } // List of original ingredients
-        public List<Ingredient> Ingredients { get; private set; } // List of ingredients
-        public List<string> Steps { get; private set; } // List of steps to prepare the recipe
-        private CalorieWarningDelegate CalorieWarning; // Delegate for calorie warnings
+        public string RecipeName { get; set; } // Name of the recipe
+        public List<Ingredient> OriginalIngredients { get; set; } // List of original ingredients
+        public List<Ingredient> Ingredients { get; set; } // List of ingredients
+        public List<string> Steps { get; set; } // List of steps to prepare the recipe
+        public CalorieWarningDelegate CalorieWarning; // Delegate for calorie warnings
 
         // Constructor to initialize the properties of the Recipe class
         public Recipe(string name)
@@ -24,7 +24,7 @@ namespace RecipeApp.Class
             OriginalIngredients = new List<Ingredient>(); // Initialize the list of original ingredients
             Steps = new List<string>(); // Initialize the list of steps
             CalorieWarning = DefaultWarning; // Set the default calorie warning
-        }
+        } // End of method
 
         // Method to enter a new recipe
         public bool EnterRecipe()
@@ -58,7 +58,7 @@ namespace RecipeApp.Class
                     string measurement = Console.ReadLine();
                     if (measurement.ToLower() == "back") return false;
 
-                    Console.WriteLine("Select Food Group for {ingredientName}:");
+                    Console.WriteLine($"Select Food Group for {ingredientName}:");
                     Console.WriteLine("1) Grains");
                     Console.WriteLine("2) Dairy");
                     Console.WriteLine("3) Protein");
@@ -141,7 +141,7 @@ namespace RecipeApp.Class
                 Console.WriteLine($"An error occurred while entering the recipe: {ex.Message}");
                 return false;
             }
-        }
+        } // End of method
 
         // Method to print the recipe
         public void PrintRecipe()
@@ -155,7 +155,8 @@ namespace RecipeApp.Class
                 Console.WriteLine("Ingredients:");
                 foreach (var ingredient in Ingredients)
                 {
-                    Console.WriteLine($"- {ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} ({ingredient.FoodGroup}, {ingredient.Calories} calories)");
+                    string ingredientDetails = $"{ingredient.Quantity} {ingredient.Measurement} of {ingredient.Name} ({ingredient.FoodGroup}, {ingredient.Calories} calories)";
+                    Console.WriteLine(ingredientDetails);
                 }
 
                 Console.WriteLine("Steps:");
@@ -173,7 +174,7 @@ namespace RecipeApp.Class
             {
                 Console.WriteLine($"An error occurred while printing the recipe: {ex.Message}");
             }
-        }
+        } // End of method
 
         // Method to calculate total calories
         public int CalculateTotalCalories()
@@ -184,10 +185,10 @@ namespace RecipeApp.Class
                 totalCalories += ingredient.Calories;
             }
             return totalCalories;
-        }
+        } // End of method
 
         // Method to set the calorie warning delegate based on total calories
-        private void SetCalorieWarningDelegate(int totalCalories)
+        public void SetCalorieWarningDelegate(int totalCalories)
         {
             if (totalCalories > 2000)
             {
@@ -209,43 +210,68 @@ namespace RecipeApp.Class
             {
                 CalorieWarning = DefaultWarning;
             }
-        }
+        } // End of method
+
+        // Method to get the calorie warning message based on total calories
+        public string GetCalorieWarningMessage(int totalCalories)
+        {
+            if (totalCalories > 2000)
+            {
+                return "Warning: Are you trying to set a new record for the highest calorie dish ever? This monstrosity is over 2000 calories! Why not just eat a brick of butter?";
+            }
+            else if (totalCalories > 1200)
+            {
+                return "Warning: Over 1200 calories! Are you sure this is a recipe and not a nutritional disaster? Maybe rethink your life choices.";
+            }
+            else if (totalCalories > 600)
+            {
+                return "Warning: This recipe is over 600 calories! Do you have a death wish, or are you just planning on sharing this with a small village?";
+            }
+            else if (totalCalories > 300)
+            {
+                return "Warning: This recipe is a calorie bomb! Over 300 calories? Are you trying to feed an army or just yourself? Excessive calorie intake can lead to weight gain, increased risk of chronic diseases like diabetes and heart disease. Please be mindful of your health.";
+            }
+            else
+            {
+                return "Your recipe looks good!";
+            }
+        } // End of method
 
         // Calorie warning for over 2000 calories
-        private void Over2000CaloriesWarning(int totalCalories)
+        public void Over2000CaloriesWarning(int totalCalories)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Warning: Are you trying to set a new record for the highest calorie dish ever? This monstrosity is over 2000 calories! Why not just eat a brick of butter?");
-        }
+        } // End of method
 
         // Calorie warning for over 1200 calories
-        private void Over1200CaloriesWarning(int totalCalories)
+        public void Over1200CaloriesWarning(int totalCalories)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Warning: Over 1200 calories! Are you sure this is a recipe and not a nutritional disaster? Maybe rethink your life choices.");
-        }
+        } // End of method
 
         // Calorie warning for over 600 calories
-        private void Over600CaloriesWarning(int totalCalories)
+        public void Over600CaloriesWarning(int totalCalories)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Warning: This recipe is over 600 calories! Do you have a death wish, or are you just planning on sharing this with a small village?");
-        }
+        } // End of method
 
         // Calorie warning for over 300 calories
-        private void Over300CaloriesWarning(int totalCalories)
+        public void Over300CaloriesWarning(int totalCalories)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Warning: This recipe is a calorie bomb! Over 300 calories? Are you trying to feed an army or just yourself?");
             Console.WriteLine("Excessive calorie intake can lead to weight gain, increased risk of chronic diseases like diabetes and heart disease. Please be mindful of your health.");
-        }
+        } // End of method
 
         // Default warning for recipes with fewer calories
-        private void DefaultWarning(int totalCalories)
+        public void DefaultWarning(int totalCalories)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Your recipe looks good!");
-        }
+        } // End of method
 
         // Method to delete the recipe
         public void DeleteRecipe()
@@ -261,7 +287,7 @@ namespace RecipeApp.Class
             {
                 Console.WriteLine($"An error occurred while deleting the recipe: {ex.Message}");
             }
-        }
+        } // End of method
 
         // Method to reset the values to the original state
         public void ResetValues()
@@ -269,16 +295,16 @@ namespace RecipeApp.Class
             try
             {
                 Ingredients.Clear();
-                foreach (var originalIngredient in OriginalIngredients)
+                foreach (var ingredient in OriginalIngredients)
                 {
-                    Ingredients.Add(new Ingredient(originalIngredient.IngredientName, originalIngredient.IngredientQuantity, originalIngredient.IngredientMeasurement, originalIngredient.FoodGroup, originalIngredient.Calories));
+                    Ingredients.Add(new Ingredient(ingredient.Name, ingredient.Quantity, ingredient.Measurement, ingredient.FoodGroup, ingredient.Calories));
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while resetting the values: {ex.Message}");
             }
-        }
+        } // End of method
 
         // Method to edit the recipe
         public void EditRecipe()
@@ -292,30 +318,31 @@ namespace RecipeApp.Class
                 {
                     var ingredient = Ingredients[i];
 
-                    Console.WriteLine($"Current Ingredient {i + 1}: {ingredient.IngredientName}, {ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} ({ingredient.FoodGroup}, {ingredient.Calories} calories)");
+                    Console.WriteLine($"Current Ingredient {i + 1}: {ingredient.Name}, {ingredient.Quantity} {ingredient.Measurement} ({ingredient.FoodGroup}, {ingredient.Calories} calories)");
 
-                    Console.WriteLine($"Enter new Quantity for {ingredient.IngredientName} (or press Enter to keep current):");
+                    Console.WriteLine($"Enter new Quantity for {ingredient.Name} (or press Enter to keep current):");
+
                     string newQuantity = Console.ReadLine();
                     if (!string.IsNullOrEmpty(newQuantity))
                     {
-                        ingredient.IngredientQuantity = newQuantity;
+                        ingredient.Quantity = newQuantity;
                     }
 
-                    Console.WriteLine($"Enter new Measurement for {ingredient.IngredientName} (or press Enter to keep current):");
+                    Console.WriteLine($"Enter new Measurement for {ingredient.Name} (or press Enter to keep current):");
                     string newMeasurement = Console.ReadLine();
                     if (!string.IsNullOrEmpty(newMeasurement))
                     {
-                        ingredient.IngredientMeasurement = newMeasurement;
+                        ingredient.Measurement = newMeasurement;
                     }
 
-                    Console.WriteLine($"Enter new Food Group for {ingredient.IngredientName} (or press Enter to keep current):");
+                    Console.WriteLine($"Enter new Food Group for {ingredient.Name} (or press Enter to keep current):");
                     string newFoodGroup = Console.ReadLine();
                     if (!string.IsNullOrEmpty(newFoodGroup))
                     {
                         ingredient.FoodGroup = newFoodGroup;
                     }
 
-                    Console.WriteLine($"Enter new Calories for {ingredient.IngredientName} (or press Enter to keep current):");
+                    Console.WriteLine($"Enter new Calories for {ingredient.Name} (or press Enter to keep current):");
                     if (int.TryParse(Console.ReadLine(), out int newCalories))
                     {
                         ingredient.Calories = newCalories;
@@ -341,7 +368,7 @@ namespace RecipeApp.Class
             {
                 Console.WriteLine($"An error occurred while editing the recipe: {ex.Message}");
             }
-        }
+        } // End of method
 
         // Prefill Pancake recipe
         public void EnterPancakeRecipe()
@@ -370,7 +397,7 @@ namespace RecipeApp.Class
             {
                 Console.WriteLine($"An error occurred while prefilling the pancake recipe: {ex.Message}");
             }
-        }
+        } // End of method
 
         // Prefill Ciabatta recipe
         public void EnterCiabattaRecipe()
@@ -399,10 +426,14 @@ namespace RecipeApp.Class
             {
                 Console.WriteLine($"An error occurred while prefilling the ciabatta recipe: {ex.Message}");
             }
-        }
+        } // End of method
 
-        // End of Recipe class
-    }
+        // Override of the ToString method to provide a string representation of the recipe
+        public override string ToString()
+        {
+            return $"{RecipeName} - {Ingredients.Count} ingredients, {CalculateTotalCalories()} calories";
+        } // End of method
 
-    // End of RecipeApp.Class namespace
-}
+    } // End of Recipe class
+
+} // End of RecipeApp.Class namespace

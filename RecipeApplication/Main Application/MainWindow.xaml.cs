@@ -1,24 +1,28 @@
 ﻿using RecipeApp.Class;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using OxyPlot;
 using OxyPlot.Series;
 using OxyPlot.Wpf;
+using System.Collections.Generic;
 
 namespace RecipeApplication.MainApplication
 {
     public partial class MainWindow : Window
     {
-        private List<Recipe> recipes;
+        // ObservableCollection to store the list of recipes
+        public ObservableCollection<Recipe> Recipes { get; set; } = new ObservableCollection<Recipe>();
 
+        // Constructor to initialize the MainWindow
         public MainWindow()
         {
             InitializeComponent();
-            recipes = new List<Recipe>();
-        }
+        } // End of method
 
+        // Event handler for the "Enter A Recipe" button click
         private void BtnEnterRecipe_Click(object sender, RoutedEventArgs e)
         {
             var enterRecipeWindow = new RecipeApplication.ManageRecipeApplication.EnterRecipeWindow();
@@ -26,52 +30,56 @@ namespace RecipeApplication.MainApplication
 
             if (enterRecipeWindow.NewRecipe != null)
             {
-                recipes.Add(enterRecipeWindow.NewRecipe);
+                Recipes.Add(enterRecipeWindow.NewRecipe);
                 DisplayRecipe(enterRecipeWindow.NewRecipe);
             }
-        }
+        } // End of method
 
+        // Event handler for the "Prefill Pancake Recipe" button click
         private void BtnPrefillPancake_Click(object sender, RoutedEventArgs e)
         {
             var pancakeRecipe = new Recipe("Pancake");
             pancakeRecipe.EnterPancakeRecipe();
-            recipes.Add(pancakeRecipe);
+            Recipes.Add(pancakeRecipe);
             DisplayRecipe(pancakeRecipe);
-        }
+        } // End of method
 
+        // Event handler for the "Prefill Ciabatta Bread Recipe" button click
         private void BtnPrefillCiabatta_Click(object sender, RoutedEventArgs e)
         {
             var ciabattaRecipe = new Recipe("Ciabatta Bread");
             ciabattaRecipe.EnterCiabattaRecipe();
-            recipes.Add(ciabattaRecipe);
+            Recipes.Add(ciabattaRecipe);
             DisplayRecipe(ciabattaRecipe);
-        }
+        } // End of method
 
+        // Event handler for the "Select A Recipe" button click
         private void BtnSelectRecipe_Click(object sender, RoutedEventArgs e)
         {
-            if (recipes.Count == 0)
+            if (Recipes.Count == 0)
             {
                 MessageBox.Show("No recipes available.");
                 return;
             }
 
-            recipes.Sort((r1, r2) => r1.RecipeName.CompareTo(r2.RecipeName));
-
-            var selectRecipeWindow = new RecipeApplication.ManageRecipeApplication.SelectRecipeWindow(recipes);
+            var selectRecipeWindow = new RecipeApplication.ManageRecipeApplication.SelectRecipeWindow(Recipes);
             selectRecipeWindow.ShowDialog();
 
-            if (selectRecipeWindow.SelectedRecipe != null)
+            if (selectRecipeWindow.SelectedRecipes != null && selectRecipeWindow.SelectedRecipes.Count > 0)
             {
-                var manageRecipeWindow = new RecipeApplication.ManageRecipeApplication.EditRecipeWindow(selectRecipeWindow.SelectedRecipe);
+                var manageRecipeWindow = new RecipeApplication.ManageRecipeApplication.EditRecipeWindow(selectRecipeWindow.SelectedRecipe, Recipes);
                 manageRecipeWindow.ShowDialog();
+                DisplayRecipe(selectRecipeWindow.SelectedRecipe);
             }
-        }
+        } // End of method
 
+        // Event handler for the "Exit" button click
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        } // End of method
 
+        // Method to display the selected recipe in the content area
         private void DisplayRecipe(Recipe recipe)
         {
             contentArea.Children.Clear();
@@ -151,91 +159,27 @@ namespace RecipeApplication.MainApplication
                 Margin = new Thickness(10, 5, 10, 5)
             };
             contentArea.Children.Add(warningTextBlock);
-        }
+        } // End of method
 
-        public void DeleteRecipe(Recipe recipe)
-        {
-            recipes.Remove(recipe);
-            contentArea.Children.Clear();
-            MessageBox.Show("Recipe deleted.");
-        }
-
-        public void PrintRecipe(Recipe recipe)
-        {
-            contentArea.Children.Clear();
-
-            var recipeNameTextBlock = new TextBlock
-            {
-                Text = recipe.RecipeName,
-                FontSize = 24,
-                FontWeight = System.Windows.FontWeights.Bold,
-                Foreground = new SolidColorBrush(Colors.DarkBlue),
-                Margin = new Thickness(10)
-            };
-            contentArea.Children.Add(recipeNameTextBlock);
-
-            var ingredientsTextBlock = new TextBlock
-            {
-                Text = "Ingredients:",
-                FontSize = 18,
-                FontWeight = System.Windows.FontWeights.Bold,
-                Foreground = new SolidColorBrush(Colors.DarkGreen),
-                Margin = new Thickness(10, 10, 10, 5)
-            };
-            contentArea.Children.Add(ingredientsTextBlock);
-
-            foreach (var ingredient in recipe.Ingredients)
-            {
-                var ingredientTextBlock = new TextBlock
-                {
-                    Text = ingredient.ToString(),
-                    FontSize = 16,
-                    Foreground = new SolidColorBrush(Colors.Black),
-                    Margin = new Thickness(20, 5, 10, 5)
-                };
-                contentArea.Children.Add(ingredientTextBlock);
-            }
-
-            var stepsTextBlock = new TextBlock
-            {
-                Text = "Steps:",
-                FontSize = 18,
-                FontWeight = System.Windows.FontWeights.Bold,
-                Foreground = new SolidColorBrush(Colors.DarkGreen),
-                Margin = new Thickness(10, 10, 10, 5)
-            };
-            contentArea.Children.Add(stepsTextBlock);
-
-            for (int i = 0; i < recipe.Steps.Count; i++)
-            {
-                var stepCheckBox = new CheckBox
-                {
-                    Content = $"{i + 1}. {recipe.Steps[i]}",
-                    FontSize = 16,
-                    Foreground = new SolidColorBrush(Colors.Black),
-                    Margin = new Thickness(20, 5, 10, 5)
-                };
-                contentArea.Children.Add(stepCheckBox);
-            }
-        }
-
+        // Event handler for the "Create Chart" button click
         private void BtnCreateChart_Click(object sender, RoutedEventArgs e)
         {
-            if (recipes.Count == 0)
+            if (Recipes.Count == 0)
             {
                 MessageBox.Show("No recipes available.");
                 return;
             }
 
-            var selectRecipesWindow = new RecipeApplication.ManageRecipeApplication.SelectRecipesWindow(recipes);
+            var selectRecipesWindow = new RecipeApplication.ManageRecipeApplication.SelectRecipeWindow(Recipes);
             selectRecipesWindow.ShowDialog();
 
             if (selectRecipesWindow.SelectedRecipes != null && selectRecipesWindow.SelectedRecipes.Count > 0)
             {
-                DisplayMenuPieChart(selectRecipesWindow.SelectedRecipes);
+                DisplayMenuPieChart(selectRecipesWindow.SelectedRecipes.ToList());
             }
-        }
+        } // End of method
 
+        // Method to display a pie chart of the food group distribution in the selected recipes
         private void DisplayMenuPieChart(List<Recipe> selectedRecipes)
         {
             var foodGroupCounts = new Dictionary<string, int>();
@@ -278,6 +222,6 @@ namespace RecipeApplication.MainApplication
 
             contentArea.Children.Clear();
             contentArea.Children.Add(plotView);
-        }
-    }
-}
+        } // End of method
+    } // End of MainWindow class
+} // End of RecipeApplication.MainApplication namespace

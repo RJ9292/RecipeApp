@@ -20,7 +20,7 @@ namespace RecipeApp.Class
             { "mg", 1 }, // 1 milligram is the base unit for weight
             { "g", 1000 }, // 1 gram = 1000 milligrams
             { "kg", 1000000 } // 1 kilogram = 1000000 milligrams
-        };
+        }; // End of UnitConversions dictionary
 
         // Dictionary to store the type of units (volume or weight)
         public static readonly Dictionary<string, string> UnitTypes = new Dictionary<string, string>
@@ -33,7 +33,7 @@ namespace RecipeApp.Class
             { "mg", "weight" },
             { "g", "weight" },
             { "kg", "weight" }
-        };
+        }; // End of UnitTypes dictionary
 
         // Method to convert a quantity from one unit to another
         public static string ConvertMeasurement(double quantity, string fromUnit, string toUnit)
@@ -55,7 +55,7 @@ namespace RecipeApp.Class
             double convertedQuantity = baseQuantity / UnitConversions[toUnit];
 
             return $"{convertedQuantity} {toUnit}";
-        }
+        } // End of method
 
         // Method to scale a quantity by a multiplier and convert units if necessary
         public static (double Quantity, string Unit) ScaleMeasurement(double quantity, string unit, double multiplier)
@@ -95,10 +95,8 @@ namespace RecipeApp.Class
             }
 
             return (scaledQuantity, scaledUnit);
-        }
+        } // End of method
 
-        // End of MeasurementConverter class
-    }
+    } // End of MeasurementConverter class
 
-    // End of RecipeApp.Class namespace
-}
+} // End of RecipeApp.Class namespace

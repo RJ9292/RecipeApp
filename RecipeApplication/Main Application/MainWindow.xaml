@@ -2,37 +2,57 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Recipe Application" Height="600" Width="800">
+    <!-- Background of the window with a linear gradient brush -->
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="#FF6A5ACD" Offset="0"/>
+            <!-- Start color of gradient -->
             <GradientStop Color="#FF00FF7F" Offset="1"/>
+            <!-- End color of gradient -->
         </LinearGradientBrush>
     </Window.Background>
+    <!-- End of Window.Background -->
+
     <Grid>
+        <!-- Define row and column definitions for the grid layout -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <!-- First row with automatic height -->
             <RowDefinition Height="*"/>
+            <!-- Second row taking remaining space -->
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
+            <!-- First column with fixed width -->
             <ColumnDefinition Width="*"/>
+            <!-- Second column taking remaining space -->
         </Grid.ColumnDefinitions>
+        <!-- End of grid row and column definitions -->
 
         <!-- Menu Panel -->
         <StackPanel Grid.Row="0" Grid.Column="0" Background="#FF2E8B57" Margin="5">
             <TextBlock Text="Menu" Foreground="White" FontSize="24" FontWeight="Bold" Margin="10"/>
+            <!-- Menu title -->
             <Button Content="Enter A Recipe" Name="btnEnterRecipe" Margin="5" Padding="10" Foreground="White" Background="#FF6B8E23" Click="BtnEnterRecipe_Click"/>
+            <!-- Enter Recipe button -->
             <Button Content="Prefill Pancake Recipe" Name="btnPrefillPancake" Margin="5" Padding="10" Foreground="White" Background="#FF6B8E23" Click="BtnPrefillPancake_Click"/>
+            <!-- Prefill Pancake Recipe button -->
             <Button Content="Prefill Ciabatta Bread Recipe" Name="btnPrefillCiabatta" Margin="5" Padding="10" Foreground="White" Background="#FF6B8E23" Click="BtnPrefillCiabatta_Click"/>
+            <!-- Prefill Ciabatta Bread Recipe button -->
             <Button Content="Select A Recipe" Name="btnSelectRecipe" Margin="5" Padding="10" Foreground="White" Background="#FF6B8E23" Click="BtnSelectRecipe_Click"/>
+            <!-- Select A Recipe button -->
             <Button Content="Create Chart" Name="btnCreateChart" Margin="5" Padding="10" Foreground="White" Background="#FF6B8E23" Click="BtnCreateChart_Click"/>
+            <!-- Create Chart button -->
             <Button Content="Exit" Name="btnExit" Margin="5" Padding="10" Foreground="White" Background="#FF6B8E23" Click="BtnExit_Click"/>
+            <!-- Exit button -->
         </StackPanel>
+        <!-- End of Menu Panel -->
 
         <!-- Content Area -->
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="5">
             <!-- Title -->
             <TextBlock Text="Recipe Application" FontSize="32" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="10"/>
+            <!-- Application title -->
 
             <!-- Content Display Area -->
             <Border Background="#FFFAFAD2" CornerRadius="10" Padding="10" Margin="10">
@@ -40,8 +60,14 @@
                     <StackPanel Name="contentArea">
                         <!-- Dynamic content will be loaded here -->
                     </StackPanel>
+                    <!-- End of dynamic content area -->
                 </ScrollViewer>
+                <!-- End of ScrollViewer -->
             </Border>
+            <!-- End of Border -->
         </StackPanel>
+        <!-- End of Content Area -->
     </Grid>
+    <!-- End of Grid -->
 </Window>
+<!-- End of Window -->

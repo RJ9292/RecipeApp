@@ -1,9 +1,17 @@
 ﻿<Window x:Class="RecipeApplication.ManageRecipeApplication.SelectRecipeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Select Recipe" Height="450" Width="400">
+        Title="Select Recipe" Height="450" Width="300">
+    <!-- Main grid layout -->
     <Grid>
-        <ListBox Name="lstRecipes" SelectionMode="Single" Margin="10" DisplayMemberPath="DisplayInfo"/>
+        <!-- ListBox for displaying and selecting multiple recipes -->
+        <ListBox Name="lstRecipes" SelectionMode="Multiple" Margin="10" MouseDoubleClick="lstRecipes_MouseDoubleClick"/>
+        <!-- End of ListBox -->
+
+        <!-- Select button to confirm selection -->
         <Button Content="Select" Click="BtnSelect_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10"/>
+        <!-- End of Button -->
     </Grid>
+    <!-- End of Grid -->
 </Window>
+<!-- End of Window -->

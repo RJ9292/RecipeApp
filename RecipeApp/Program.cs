@@ -5,6 +5,7 @@ namespace RecipeApp.Class
 {
     internal class Program
     {
+        // Main method - entry point of the application
         public static void Main(string[] args)
         {
             // Set console background and foreground colors
@@ -88,7 +89,7 @@ namespace RecipeApp.Class
                 Console.WriteLine("Press Enter to continue...");
                 Console.ReadLine();
             }
-        }
+        } // End of method
 
         // Display explanations for calories and food groups
         private static void DisplayExplanations()
@@ -117,7 +118,7 @@ namespace RecipeApp.Class
             Console.WriteLine();
             Console.WriteLine("Press Enter to continue...");
             Console.ReadLine();
-        }
+        } // End of method
 
         // Select a recipe from the list
         private static void SelectRecipe(List<Recipe> recipes, out Recipe selectedRecipe)
@@ -146,7 +147,7 @@ namespace RecipeApp.Class
             {
                 Console.WriteLine("Invalid selection.");
             }
-        }
+        } // End of method
 
         // Manage the selected recipe
         private static void ManageSelectedRecipe(List<Recipe> recipes, Recipe selectedRecipe)
@@ -235,9 +236,10 @@ namespace RecipeApp.Class
                     Console.ReadLine();
                 }
             }
-        }
-    }
-}
+        } // End of method
+    } // End of Program class
+} // End of RecipeApp.Class namespace
+
 /*
 ankita_saini, 2019. GeeksForGeeks. [Online]
 Available at: https://www.geeksforgeeks.org/console-class-in-c-sharp/
@@ -245,7 +247,7 @@ Available at: https://www.geeksforgeeks.org/console-class-in-c-sharp/
 ankita_saini, 2023.GeeksForGeeks. [Online]
 Available at: https://www.geeksforgeeks.org/c-sharp-dictionary-with-examples/
 [Accessed 30 05 2024].
-Kirti_Mangal, 2022.GeeksForgeeks. [Online]
+Kirti_Mangal, 2022.GeeksForgeeks. [Online]  
 Available at: https://www.geeksforgeeks.org/c-sharp-list-class/
 [Accessed 30 05 2024].
 ManasiKirloskar, 2021.GeeksForGeeks. [Online]
